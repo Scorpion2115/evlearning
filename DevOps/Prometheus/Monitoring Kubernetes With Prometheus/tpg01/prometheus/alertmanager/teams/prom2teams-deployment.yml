@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prom2teams-depoloyment
+  namespace: monitoring
+  labels: 
+   app: prom2teams
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prom2teams
+  template:
+    metadata:
+      labels:
+        app: prom2teams
+    spec:
+      containers:
+        - env:
+          - name: PROM2TEAMS_CONNECTOR
+            #value: [url from the webhook]
+            value: https://tpgtelecom.webhook.office.com/webhookb2/8dc8ff51-306f-491d-92b2-fc66403df579@962eac56-3e0a-4f69-b806-ab958060d246/IncomingWebhook/b80e1c2aaa8d4b52bdb21423b66432ab/388f587c-4b4e-481c-9133-31d3583494ef
+          image: idealista/prom2teams:3.2.3
+          name: prom2teams
+          ports:
+            - containerPort: 8089
+         volumeMounts:
+          - mountPath: /etc/config
+            name: config-volume
+          - mountPath: /data
+            name: storage-volume
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: alertmanager-conf
+          name: config-volume
+        - emptyDir: {}
+          name: storage-volume         
