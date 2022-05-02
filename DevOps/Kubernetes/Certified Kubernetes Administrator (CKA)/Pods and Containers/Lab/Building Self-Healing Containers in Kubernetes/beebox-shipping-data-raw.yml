@@ -1,0 +1,12 @@
+#kubectl get po beebox-shipping-data -o yaml > beebox-shipping-data.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: beebox-shipping-data
+  namespace: default
+spec:
+  containers:
+  - image: linuxacademycontent/random-crashing-web-server:1
+    imagePullPolicy: IfNotPresent
+    name: shipping-data
+  restartPolicy: Never                                                                                                                                                                                1,1           Top
