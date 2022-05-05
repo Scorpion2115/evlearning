@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-clusterip
+spec:
+  type: ClusterIP
+  # determine to which pod the service is gonna route traffic
+  selector:
+    app: svc-example
+  ports:
+    - protocol: TCP
+      # the port that the service is listening
+      port: 80
+      # the port that the service is routing to the backend pod
+      targetPort: 80
