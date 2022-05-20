@@ -32,24 +32,25 @@ kubectl apply -f prometheus/kube-state-metrics.yml
 
 7. Install NodeExporters
 The Prometheus Node Exporter exposes a wide variety of hardware- and kernel-related metrics.
-
 [Prometheus Node Exporter](https://github.com/prometheus/node_exporter)
-
-
-option 1: 
+* option 1: 
 ```bash
 sudo apt-get update
 sudo apt-get install prometheus-node-exporter
 ```
-
-option 2 (not working T-T)
+* option 2 (not working T-T)
 [Install Node Exporter](/Install%20Node%20Exporter.md)
 
 ## Grafana
-
 1. deployment
+```bash
+kubectl apply -f grafana/grafana-deployment.yml
+```
 
 2. service
+```bash
+kubectl apply -f grafana/grafana-service.yml
+```
 
 
 

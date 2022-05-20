@@ -21,7 +21,7 @@ spec:
          runAsGroup: 472
       containers:
         - name: grafana
-          image: grafana/grafana:latest
+          image: grafana/grafana:main-ubuntu
           imagePullPolicy: IfNotPresent
           env:
             - name: GF_SECURITY_ADMIN_PASSWORD
