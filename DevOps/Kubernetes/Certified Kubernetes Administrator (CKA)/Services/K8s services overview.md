@@ -12,3 +12,6 @@ The client does not need to think about which pod it is communicating to, the cl
 Endpoints are the backend entities to which service route traffic.
 
 For a service that routes traffic to multiple pods, each pods will have an endpoint associated with the service
+
+
+![img](./img/services.jpg)

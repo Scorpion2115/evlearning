@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shared-volume-pod
+  namespace: demo
+spec:
+  restartPolicy: Never
+  containers:
+  # container 1
+  - name: busybox1
+    image: busybox
+    command: ['sh', '-c', 'while true; do echo hello from ev! > /output/msg.txt; sleep 5; done']
+    volumeMounts:
+    - name: my-shared-volume
+      mountPath: /output
+
+  # container 2
+  - name: busybox2
+    image: busybox
+    command: ['sh', '-c', 'while true; do cat /input/msg.txt; sleep 5; done']
+    volumeMounts:
+    - name: my-shared-volume
+      mountPath: /input
+
+  volumes:
+  - name: my-shared-volume
+    emptyDir: {}

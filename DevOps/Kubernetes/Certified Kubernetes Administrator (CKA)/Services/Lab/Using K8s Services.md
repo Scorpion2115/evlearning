@@ -1,10 +1,9 @@
 # Using K8s Services
 
+
 ## Preparation
 1. Create a sample deployment
 `kubectl apply -f deployment-svc-example.yml`
-
-
 
 ## Test the ClusterIP Service
 1. Create a ClusterIP service

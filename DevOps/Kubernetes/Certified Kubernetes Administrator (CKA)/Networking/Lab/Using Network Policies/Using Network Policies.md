@@ -11,12 +11,12 @@ kubectl label ns np-test team=np-test
 ```
 3. Create a web server pod
 ```bash
- kubectl apply -f np-server-nginx.yml
+kubectl apply -f np-server-nginx.yml
 ```
 
 4. Create a client pod
 ```bash
- kubectl apply -f np-client-busybox.yml
+kubectl apply -f np-client-busybox.yml
 ```
 
 5. Get the IP address of the server Pod and save it to an environment variable.
