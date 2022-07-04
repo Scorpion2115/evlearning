@@ -1,0 +1,23 @@
+- hosts: workers
+  become: yes
+  tasks:
+    - name: install apache2 packets
+      apt:
+        name: apache2
+        state: latest
+        update_cache: yes
+    - name: update apache2 port.conf
+      template:
+        # deploy a pre-defined template file to the target
+        src: /home/ansible/handler/ports.conf.j2
+        dest: /etc/apache2/ports.conf
+      # invoke the handler
+      notify: apache2 service
+  handlers:
+    # restart the service, once the handler is invoked
+    - name: apache2 service
+      service:
+        name: apache2
+        state: restarted
+      listen: apache2 service
+          

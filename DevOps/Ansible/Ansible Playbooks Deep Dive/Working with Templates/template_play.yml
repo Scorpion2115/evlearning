@@ -1,0 +1,12 @@
+---
+- name: Template a file out to a target host
+  hosts: workers
+  become: yes
+  vars:
+    code_name: KG
+    version: 2.1
+  tasks:
+    - name: deploy a config file
+      template:
+        src: config.j2
+        dest: /opt/config

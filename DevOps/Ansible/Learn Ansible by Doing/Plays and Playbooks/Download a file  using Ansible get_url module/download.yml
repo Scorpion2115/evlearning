@@ -1,0 +1,16 @@
+---
+- name: download files using ansible get_url
+  hosts: sandbox
+  become: yes
+  vars:
+    myurl: "https://releases.ansible.com/ansible/ansible-2.9.25.tar.gz"
+    mycrc: "sha256:https://releases.ansible.com/ansible/ansible-2.9.25.tar.gz.sha"
+    mydest: "/home/cloud_user"
+  tasks:
+    - name: download a file
+      ansible.builtin.get_url:
+        url: "{{ myurl }}"
+        dest: "{{ mydest }}"
+        checksum: "{{ mycrc }}"
+        owner: cloud_user
+        group: cloud_user

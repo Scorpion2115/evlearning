@@ -1,0 +1,10 @@
+- hosts: workers
+  become: yes
+  vars_files:
+    vars.yml
+  tasks:
+    - name: check service
+      service:
+        name: "{{ item }}"
+        state: started
+      loop: "{{ service_list }}"

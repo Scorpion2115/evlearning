@@ -1,0 +1,28 @@
+---
+# to execute this playbook, run:
+# ansible-playbook vars_play.yml -e @group_vars/vars.yml
+name: Using Variables in Playbooks
+- hosts: localhost
+  tasks:
+   - name: create working directory
+     file: 
+      name: "{{ working_dir }}"
+      state: directory
+
+   - name: write service list
+     lineinfile: 
+      path: "{{ working_dir }}/service.txt"
+      create: yes
+      line: "{{ service_list }}"
+
+   - name: view share property
+    # call a specific key of the item under the share_paths dictionary
+     command: ls -la "{{ share_paths['home'] }}"
+     #command: ls -la "{{ share_paths['urs'] }}"
+     #command: ls -la "{{ share_paths['var'] }}"
+     register: cmd_output
+
+   - name: write the previous command output to a file
+     copy:
+      content: "{{cmd_output}}"
+      dest: "{{ working_dir }}/cmd_output.txt"
