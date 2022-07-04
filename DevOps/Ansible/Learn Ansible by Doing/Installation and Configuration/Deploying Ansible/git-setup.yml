@@ -1,8 +1,0 @@
---- # install git on target host
-- hosts: all
-  become: yes
-  tasks:
-  - name: install git
-    apt:
-      name: git
-      state: latest

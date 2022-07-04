@@ -1,5 +1,0 @@
-service_list:
-- docker
-- nginx
-- httpd
-- bind9
