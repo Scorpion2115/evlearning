@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: networkpolicy-denyall
+  namespace: np-test
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx
+  # this policy apply to both incoming and outgoing traffic    
+  # as there is no rule defined, it means nothing is allowed
+  policyTypes:
+  - Ingress
+  - Egress

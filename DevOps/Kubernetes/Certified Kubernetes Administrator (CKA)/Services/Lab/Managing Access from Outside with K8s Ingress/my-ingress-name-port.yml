@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress-name-port
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /somepath
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-clusterip
+            port:
+             name: you-know-who
+             #number: 80
